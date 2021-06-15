@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-	int i=0,j=0,temp,flag,n=3;
+	int i=0,j=0,temp,flag,n;
 	int a[ ]={8, 5, 0, -1, 5, 5, 1, 7, 6};
 	n = sizeof(a)/sizeof(int);
 
