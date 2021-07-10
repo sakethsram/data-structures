@@ -37,41 +37,53 @@ int transpose()
 			a[i][j] = a[j][i];
 			a[j][i] = temp;
 		}
-		printf("%d......\n", i+1);
 	}
 	return 0;	
 }	
 
+int rotate_row(int *p, int n)
+{
+	int i = 0, j = 0, temp;
+
+	for (i = 0; i <= (n/2)-1; i++)
+	{
+ 		temp=p[i];
+		p[i]=p[n-i-1];
+		p[n-i-1]=temp;
+	}
+
+	return 0;
+}
+
 int rotate_rows()
 {
 	int k;
-	int i = 0,j = 0, temp = 0;
+	int i = 0, n = 0;
 
 	for(i = 0; i <= r-1; i++)
 	{
-		k = r - 1;
-		for(j = 0;j <= k-1; j++)
-		{
-			temp = a[i][j];
-			a[i][j] = a[j][i];
-			a[j][i] = temp;
-			k = k - 1;
-		}
+		n = sizeof(a[i])/sizeof(int);
+		rotate_row(a[i], n);
 	}
 	return 0;
 }  
 
 int main()
 {
-    printf("first");
 	int i,j,temp,k;
 
+    printf("Base Rectangle");
 	dump_array();
+
 	transpose();
+
+	printf("After transpose...\n");
 	dump_array();
+
 	rotate_rows();
+
+	printf("After Rotation...\n");
 	dump_array();
-    //printf("after transpose");
 }	
 
 
