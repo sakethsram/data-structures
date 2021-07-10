@@ -23,6 +23,12 @@ int main()
 	{
 		printf ("\nIteration :%d\n", flag+1);
 		printf("1. ll :%d, ul :%d, midp :%d, midv :%d\n", ll, ul, midp, a[midp]);
+		if(a[ul]=sval)
+		{
+			printf("THE VALUE IS FOUND AT :  :%d\n" ,ul);
+			break;
+		}
+		
 		if(a[midp] == sval)
 		{
 			printf("2. ll :%d, ul :%d, midp :%d, midv :%d\n", ll, ul, midp, a[midp]);
@@ -43,10 +49,7 @@ int main()
 			ll=midp;
 			midp = (ul + ll) / 2;
 		}
-		/*
-		   if(flag==2)
-		   break;
-		   */			
+		
 	}		
 
 	if(ul==ll)
