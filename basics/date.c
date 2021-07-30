@@ -1,10 +1,8 @@
 #include"stdio.h"
-int date=1 , y=1321 , m=3;  
+int date=14, y=2003 , m=9;  
 int main()
 {
 	int c,cn,yn ,mn,sl,flag,ld,rem,temp,sum;
-	printf("date  :%d\n", date);
-	printf("\n");
 	if(m==1)
 		mn=0;
 	
@@ -40,8 +38,6 @@ int main()
 
 	if(m==12)
 		mn=5;
-	printf(" mn  : %5d ", mn);
-	printf("\n");
 
 	
 
@@ -51,8 +47,6 @@ int main()
 		c=((y/100)/1) +1;
 	if(y%100==0)
 		c=((y/100)/1) +1;
-	printf(" c  : %5d ", c );
-	printf("\n");
 
 	
 	if(c%4==3)
@@ -63,19 +57,12 @@ int main()
 		cn=6;
 	if(c%4==2)
 		cn=4;
-	printf(" cn : %5d  ", cn );
 	printf("\n");
 	
 	sl=y % 100;
 	ld=sl / 4 ;
-	printf(" sl : %5d  ", sl );
-	printf("\n");
-	printf(" ld : %5d  ", ld );
-	printf("\n");
 	sum= date + mn + cn + sl + ld;
-	printf(" sum : %5d\n", sum );
 	rem = sum % 7;
-	printf("rem :%5d\n", rem);
 
 //	if(y%4==0 && (y%100 != 0 || y%400==0))
 //		rem--;

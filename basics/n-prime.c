@@ -24,11 +24,6 @@ int main()
 			}
 		}	
 	}
-    /*temp=prime(k);
-	if(temp==k)
-		printf("   prime ");
-	else
-		printf(" not   prime ");*/
 }
 		 
 			
