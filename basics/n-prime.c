@@ -18,8 +18,7 @@ int main()
 		{
 			if(a==temp)
 			{
-				printf("%5d", a);
-				printf("\n");
+				printf(" \n %5d \n ", a);
 				z++;
 			}
 		}	
