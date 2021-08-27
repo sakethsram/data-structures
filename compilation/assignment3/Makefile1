@@ -1,0 +1,14 @@
+my.out: a.o fact.o
+	gcc a.o fact.o -o my.out
+a.i:a.c
+	gcc a.c -E -o a.i
+fact.i:fact.c
+	gcc fact.c -E -o fact.i
+a.o:a.i
+	gcc a.i -c -o a.o
+fact.o:fact.c
+	gcc fact.c -c -o fact.o
+clean:
+	rm  -f *.out
+	rm  -f *.i
+	rm  -f *.o
