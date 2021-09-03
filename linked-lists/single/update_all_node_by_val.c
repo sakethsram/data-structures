@@ -1,10 +1,11 @@
 #include "defs.h"
 #include "stdio.h"
 extern struct student *h;
-int update_all_node_by_val(int ov,int nv);
+
+int update_all_node_by_val(int ov, int nv)
 {
-	struct student  *t=h
-		int i=0;
+	struct student  *t=h;
+	int i=0;
 	t=h;
 	while(t->next!=NULL)
 	{

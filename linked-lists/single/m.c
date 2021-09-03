@@ -18,10 +18,10 @@ int main()
 	//Del first node
 	//Del node which does not exists
 	//Del no nodes
-	del_node_by_val(90);
+	del_node_by_val(5);
 	dumplist();
-	get_node_value_by_pos(10);
 	return 0;
+	get_node_value_by_pos(10);
 	add_node(100);
 	dumplist();
 	del_node_by_val(200);
