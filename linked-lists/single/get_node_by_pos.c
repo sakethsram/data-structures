@@ -1,5 +1,8 @@
-extern struct student 
-int valbypos(int pos)
+#include "defs.h"
+#include "stdio.h"
+
+extern struct student *h;
+int get_node_value_by_pos(int pos)
 {
 	int i=0;
 	struct student *t=h;

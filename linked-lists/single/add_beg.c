@@ -1,6 +1,8 @@
 #include "stdio.h"
 #include "stdlib.h"
-extern struct student 
+#include "defs.h"
+
+extern struct student *h;
 int add_beg(int v)
 {
 	struct student *p;

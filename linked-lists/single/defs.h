@@ -1,6 +1,13 @@
-int add_node(int n)
+struct student 
+{
+	int no;
+	struct student *next;
+};	
+
+int add_node(int n);
 int add_beg(int v);
-int del_node_by_pos(int pos);
+int del_node_value_by_pos(int pos);
+int get_node_value_by_pos(int pos);
 int del_node_by_val(int v);
 int valbypos(int x);
 int posbyval(int v);
@@ -18,6 +25,3 @@ int find_the_order();
 int ordered_insert_in_circular_list(int val);
 int add_node_to_circular_list(int val);
 int find_order_in_circular_list();
-
-
-

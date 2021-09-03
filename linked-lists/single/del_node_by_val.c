@@ -1,7 +1,10 @@
 #include "stdio.h"
 #include "stdlib.h"
-extern  struct student *h
-int del_by_val(int v)
+#include "defs.h"
+
+extern  struct student *h;
+
+int del_node_by_val(int v)
 {
 	struct student *t=h;
 	int i=0;
