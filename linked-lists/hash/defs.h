@@ -5,7 +5,7 @@ struct student
 };
 int get_hashkey(int v);
 int hashkey(int v);
-int addondeh(int v);
+int add_node_h(int v);
 int add_node_begining(int v);
 int getcount();
 int add_node_begining(int v);
