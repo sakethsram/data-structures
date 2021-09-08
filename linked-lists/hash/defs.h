@@ -9,5 +9,6 @@ int add_node_h(int v);
 int add_node_begining(int v);
 int getcount();
 int add_node_begining(int v);
+int del_node_by_val(int v);
 void dumplist(void);
 

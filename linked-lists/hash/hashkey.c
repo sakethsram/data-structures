@@ -1,5 +1,4 @@
-#include "defs.h"
-#include "stddef.h"
+#include "defs.h" #include "stddef.h"
 #include "stdio.h"
 #include "stdlib.h"
 extern struct student *h[4];

@@ -24,4 +24,6 @@ int ordered_insert(int val);
 int find_the_order();
 int ordered_insert_in_circular_list(int val);
 int add_node_to_circular_list(int val);
-int find_order_in_circular_list();
+int find_order_in_circular_list(); 
+int get_hashkey(int v);
+int add_node_hash(int v);
