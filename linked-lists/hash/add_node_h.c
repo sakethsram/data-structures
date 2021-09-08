@@ -3,7 +3,7 @@
 #include "stddef.h"
 #include "stdlib.h"
 extern struct student *h[4];
-int addondeh(int v)
+int add_node_h(int v)
 {
 	struct student *t=NULL,*p=NULL;
 	int hash;

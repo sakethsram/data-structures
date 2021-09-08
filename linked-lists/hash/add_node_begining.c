@@ -4,14 +4,13 @@
 #include "stdlib.h"
 extern struct student *h[4];
 int add_node_begining(int v)
-
 {
 	int temp=0;
 	struct student *p;
 	temp=get_hashkey(v);
 	if(h[temp]==NULL)
 	{
-		addnodeh(v);
+		add_node_h(v);
 		return 0;
 	}
 	p=malloc(sizeof(struct student ));
