@@ -2,6 +2,14 @@
 #include "string.h"
 
 #define LANE_SIZE 8
+#define MAX_HASH_LISTS 32
+
+struct layout_map
+{
+	int villa_no;
+};
+
+struct layout_map map[MAX_HASH_LISTS];
 
 struct hash
 {
@@ -34,7 +42,7 @@ int get_lane_pos(int v, char *lane)
 	return -1;
 }	
 
-int dumplist(void)
+int dump_map_table(void)
 {
 	int i=0;
 
@@ -46,12 +54,31 @@ int dumplist(void)
 	}
 }
 
+int dump_hash_list(void)
+{
+}
+
+int add_node_hlist(int hk, int villa)
+{
+	//Create node and add to hashed list
+	//Input hash_key, node_value
+}
+
 int addnode(int v, char *lane)
 {
-	int n, i = 0;
-	n = get_lane_pos(v, lane);
+	int hk, i = 0;
+	hk = get_lane_pos(v, lane);
+	add_node_hlist(hk, v)
+
 	return 0;
 }	
+
+int get_route_map(int villa)
+{
+	//search in hashed list and get Node position and lane position
+	//map lane-position with map_table and get lane name
+	//print Lane name and Villa position
+}
 int main()
 {
 	addnode(112, "2LL");
@@ -64,6 +91,9 @@ int main()
 	addnode(104, "2LL");
 	addnode(1,   "2LL");
 	addnode(112, "2LL");
-	dumplist();
+	dump_map_table();
+	dump_hash_list();
+
+	get_route_map(110)
 	return 0;
 }	
