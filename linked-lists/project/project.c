@@ -7,6 +7,7 @@
 struct layout_map
 {
 	int villa_no;
+	struct layout_map *next;
 };
 
 struct layout_map map[MAX_HASH_LISTS];
