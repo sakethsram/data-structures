@@ -50,7 +50,7 @@ int get_lane_pos(int v, char *lane)
 			break;
 
 		if(strcmp(mtable[i].lane, lane)== 0)
-			return i;
+			break;
 	}
 
 	if (i < LANE_SIZE)
@@ -123,29 +123,51 @@ int addnode(int villa, char *lane)
 	return 0;
 }	
 
-int get_pos_by_value( int index, int vno)
+int get_pos_by_value( int i, int vno)
 {
-	struct layout_map *t = hlist[index]; 
-	int i = 0;
+	int j = 0;
+	struct layout_map *t = hlist[i]; 
+      while(t->villa != vno)
+	  {
+		  t = t->next;
+		  j = j+1;
+	
+	  }
+	  return j;
+}
 
-	for(i=0; t != NULL; i++)
+int hlist_get_lane_index_by_villa(int vno)
+{
+	struct layout_map *t=NULL;
+	int i = 0;
+	for(i = 0; i <= MAX_HASH_LISTS; i++)
 	{
-		if(t->villa == vno)
-			return i;
-	}	
-	return -1;
-}	
+		for(t = hlist[i]; t != NULL; t = t->next)	
+		{
+			if(t->villa==vno)
+				return i;
+		}
+	}
+	return i;
+}
+
 
 int hlist_get_index_by_val( int vno)
 {
 	struct layout_map *t=NULL;
 	int i = 0;
-
-	for(t=hlist[i], i = 0; t != NULL; t = t->next, i++)
+    for(i = 0; i <= MAX_HASH_LISTS; i++)
 	{
-		if(t->villa == vno)
-			return i;
-	}	
+		t = hlist[i];
+		while(t != NULL)
+		{
+			t = t->next;
+			if(t->villa == vno)
+				return i;
+		}
+	}
+
+			
 	return -1;
 }
 
@@ -156,12 +178,12 @@ char * get_lane_by_map( int index)
 	
 int get_route_map(int villa)
 {
-	int index,vpos;
+	int lane_index,vpos;
 	char *lane;
-	index = hlist_get_index_by_val(villa);
-	vpos=get_pos_by_value(index ,vpos);
-	lane=get_lane_by_map(index);
-	printf("\n\n%d villa is at :%S and at %d in pos\n\n", villa, lane, vpos);
+	lane_index = hlist_get_lane_index_by_villa(villa);
+	vpos = get_pos_by_value ( lane_index,  villa);
+	lane=get_lane_by_map( lane_index);
+	printf("\n %d villa is at :%s and at %d in pos\n\n",villa, lane, vpos);
 }
 
 int main()
@@ -180,5 +202,9 @@ int main()
 	addnode(1,   "2LL");
 	dump_hashed_list();
 	get_route_map(110);
-	return 0;
-}	
+	get_route_map(85);
+   return 0;	
+}
+
+
+	
