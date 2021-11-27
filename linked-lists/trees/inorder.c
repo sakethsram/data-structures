@@ -131,28 +131,27 @@ void dump_stack(void)
 void inorder_traversal(void)
 {
 	struct node *c=NULL, *popped;
-	int temp;
 	c = root;
 	while(TRUE)
 	{
 		if(c != NULL)
 			push(c);
-
-		temp=is_stack_empty();
-		if(c==NULL && temp==0)
+		if(c==NULL && is_stack_empty()==FALSE)
 		{
 			popped = pop();
-			printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
 			c = popped->right;
+			printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
 		}
 		if(c != NULL)
 			c=c->left;
-
 		if(c == NULL && is_stack_empty() == TRUE)
 			break;
 	}
 }
+//only left
+int values[] = {8, 12, 10, 7, 32};
 
+//only right
 int values[] = {8, 12, 10, 7, 32};
 int main()
 {
@@ -163,8 +162,6 @@ int main()
 		add_node(values[i]);
 		printf("value :%d\n", values[i]);
 	}
-	//get_right_nodes();
-	//dump_stack();
 	printf("is stack empty :%s\n", is_stack_empty() ? "TRUE" : "FALSE");
 	inorder_traversal();
 	return 0;

@@ -3,7 +3,7 @@
 #define MAX_STACK_SIZE 10
 
 int needle = -1;
-int stack[MAX_STACK_SIZE];
+struct node *stack[MAX_STACK_SIZE];
 
 struct node 
 {
@@ -14,14 +14,22 @@ struct node
 
 struct node *Head=NULL;
 
-int pop(void)
+struct node * pop(void)
 {
-	int t;
-	t = stack[needle];
+	struct node *node;
+	if(needle < 0)
+	{
+		printf("  \n stack is empty \n");
+		return NULL;
+	}	
+
+	node = stack[needle];
 	needle--;
-	return t;
+
+	return node;
 }
-int push(int v)
+
+int push(struct node *p)
 {
 	if (needle > MAX_STACK_SIZE)
 	{
@@ -29,8 +37,9 @@ int push(int v)
 		return 0;
 	}
 	needle++;
-	stack[needle] = v;
+	stack[needle] = p;
 }
+
 int add_node(int val)
 {
 	struct node *t = Head;
@@ -73,7 +82,6 @@ int add_node(int val)
 		}	
 	}
 }
-
 void display_right(void)
 {
 	struct node *t=NULL;
@@ -81,24 +89,31 @@ void display_right(void)
 	int i=0;
 	printf("\n right side values : \n ");
 	printf("\n");
-	for(i = 0, t = Head; i <=needle, t != NULL; t = t->next,i++)
+
+	for(t = Head, i = 0; t != NULL; t = t->next, i++)
 	{
-		printf(" %d:%d \n",i+1,t->v);
+		printf("%d: %p, %d\n", i+1, t, t->v);
 		push(t);
-		
 	}
+
 	printf("\n");
 }
+
 void display_stack(void)
 {
 	printf("\n stack : \n");
-	int i=needle;
-	for(i = needle ; i >= 0  ; i-- )
+	int i=0;
+	struct node *p = NULL;
+
+	while(1)
 	{
-		printf("\n %d : %d \n ",	i, stack[i] ) ;
-		pop();
+		p = pop();
+		if (p == NULL)
+			break;
+		printf("%d :%p, %d\n", i++, p, p->v);
 	}
 }	
+
 int values[] = {8, 12, 10, 7, 32, 16, 14, 11, 64};
 int main()
 {
