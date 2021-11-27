@@ -140,6 +140,8 @@ void inorder_traversal(void)
 		{
 			popped = pop();
 			c = popped->right;
+			if(c!=NULL)
+				push(c);
 			printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
 		}
 		if(c != NULL)
@@ -148,10 +150,6 @@ void inorder_traversal(void)
 			break;
 	}
 }
-//only left
-int values[] = {8, 12, 10, 7, 32};
-
-//only right
 int values[] = {8, 12, 10, 7, 32};
 int main()
 {
