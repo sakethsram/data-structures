@@ -17,47 +17,6 @@ struct node
 };
 
 struct node *root=NULL;
-
-struct node* pop(void)
-{
-	struct node *node;
-	if(needle < 0)
-	{
-		printf("  \n stack is empty \n");
-		return NULL;
-	}	
-
-	node = stack1[needle1];
-	needle1--;
-	push2(node);	
-	return node;
-}
-struct node* pop(void)
-{
-	struct node *node;
-	if(needle < 0)
-	{
-		printf("  \n stack is empty \n");
-		return NULL;
-	}	
-
-	node = stack1[needle1];
-	needle1--;
-	push2(node);
-	return node;
-}
-
-
-int push1(struct node *p)
-{
-	if (needle > MAX_STACK_SIZE)
-	{
-		printf("Stack overflow\n");
-		return 0;
-	}
-	needle1++;
-	stack1[needle1] = p;
-}
 int push2(struct node *p)
 {
 	if (needle2 > MAX_STACK_SIZE)
@@ -67,18 +26,35 @@ int push2(struct node *p)
 	}
 	needle2++;
 	stack2[needle2] = p;
-}	
+}
+int push1(struct node *p)
+{
+	if (needle1> MAX_STACK_SIZE)
+	{
+		printf("Stack overflow\n");
+		return 0;
+	}
+	needle1++;
+	stack1[needle1] = p;
+}
+struct node* pop(void)
+{
+	struct node *node;
+	if(needle1< 0)
+	{
+		printf("  \n stack1 is empty \n");
+		return NULL;
+	}	
 
+	node = stack1[needle1];
+	needle1--;
+	push2(node);	
+	return node;
+}
 int is_stack1_empty()
 {
 	return (needle1 < 0 ? 1 : 0);
 }
-
-int is_stack2_empty()
-{
-	return (needle2 < 0 ? 1 : 0);
-}	
-
 int add_node(int val)
 {
 	struct node *t = root;
@@ -122,51 +98,18 @@ int add_node(int val)
 	}
 }
 
-void get_right_nodes(void)
-{
-	struct node *t=NULL;
-	struct node *p=NULL;
-	int i=0;
-	printf("\n right side values : \n ");
-	printf("\n");
-
-	for(t = root, i = 0; t != NULL; t = t->right, i++)
-	{
-		printf("%d: %p, %d\n", i+1, t, t->v);
-		push(t);
-	}
-
-	printf("\n");
-}
-
-void dump_stack(void)
-{
-	printf("\n stack : \n");
-	int i=0;
-	struct node *p = NULL;
-
-	while(1)
-	{
-		p = pop();
-		if (p == NULL)
-			break;
-		printf("%d :%p, %d\n", i++, p, p->v);
-	}
-}
-
-void preorder_traversal(void)
+void postorder_traversal(void)
 {
 	struct node *c=NULL, *popped;
 	c = root;
-	push(root);
-	while(is_stack_empty==FALSE)
+	push1(root);
+	while(is_stack1_empty==FALSE)
 	{
 		popped=pop();
-		printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
 		if(popped->right!=NULL)
-			push(popped->right);
+			push1(popped->right);
 		if(popped->left!=NULL)
-			push(popped->left);
+			push1(popped->left);
 	}
 }
 int values[] = {8, 12, 10, 7, 32};
@@ -179,6 +122,6 @@ int main()
 		add_node(values[i]);
 		printf("value :%d\n", values[i]);
 	}
-	printf("is stack empty :%s\n", is_stack_empty() ? "TRUE" : "FALSE");
-	preorder_traversal();
+	printf("is stack empty :%s\n", is_stack1_empty() ? "TRUE" : "FALSE");
+	postorder_traversal();
 }
