@@ -88,6 +88,58 @@ void dump_stack(void)
 		printf("%d :%p, %d\n", i++, p, p->v);
 	}
 }
+
+struct node* get_node_by_val(int val)
+{
+	struct node* t = root;
+	for(t=root;t!=NULL;)
+	{
+		if(t->v < val)
+			t=t->left;
+
+		if(t->v > val)
+			t=t->right;
+
+		if(t->v == val)
+			return  t;
+	}
+}
+
+struct node* get_min_left_node_by_root(struct node* head)
+{
+	struct node* t = root;
+	head=root;
+	for(t->
+}
+void inorder_traversal(void)
+{
+	struct node *c=NULL, *popped;
+	c = root;
+	while(TRUE)
+	{
+		if(c != NULL)
+			push(c);
+		if(c==NULL && is_stack_empty()==FALSE)
+		{
+			popped = pop();
+			c = popped->right;
+			if(c!=NULL)
+				push(c);
+			printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
+		}
+		if(c != NULL)
+			c=c->left;
+		if(c == NULL && is_stack_empty() == TRUE)
+			break;
+	}
+}
+int values[] = {8, 12, 10, 7, 32};
+int main()
+{
+	struct node *c=root;
+	int i = 0;
+	for (i = 0; i < sizeof(values)/sizeof(int); i++)
+}	
 void inorder_traversal(void)
 {
 	struct node *c=NULL, *popped;
