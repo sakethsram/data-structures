@@ -16,14 +16,7 @@ int main()
 	for (i = 0; i < sizeof(values)/sizeof(int); i++)
 		add_node(values[i]);
 	inorder_traversal();
-	temp = get_node_by_val(33);
-	printf("%d. get_node_by_val: v: %d, Add:%p\n", __LINE__,  temp->v, temp);	
-	temp2 = get_max_right_node_by_root(temp);
-	printf(" \n int main == temp =%d\n",temp->v);
-	flag=is_single_child_parent(temp);
-	printf("\nflag = %d \n",flag);
-	flag2=is_leaf_node(temp);
-	printf("\n%d\n",flag2);
+	temp = get_node_by_val(10);
 	return 0;
 }
 
