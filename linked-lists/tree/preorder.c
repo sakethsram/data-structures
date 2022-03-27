@@ -92,7 +92,8 @@ void preorder_traversal(void)
 	}
 }
 
-int values[] = {8, 12, 10, 7, 32};
+//int values[] = {};
+int values[] = {20,10,31,5,15,25,42,2,12,19,11,14,35,47,33,37};
 int main()
 {
 	struct node *c=root;

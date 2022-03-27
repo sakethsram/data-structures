@@ -91,25 +91,68 @@ void dump_stack(void)
 
 struct node* get_node_by_val(int val)
 {
-	struct node* t = root;
-	for(t=root;t!=NULL;)
+	printf("\n");
+	printf("\n");
+	struct node *c=NULL, *popped;
+	c = root;
+	while(TRUE)
 	{
-		if(t->v < val)
-			t=t->left;
-
-		if(t->v > val)
-			t=t->right;
-
-		if(t->v == val)
-			return  t;
+		if(c != NULL)
+			push(c);
+		if(c==NULL && is_stack_empty()==FALSE)
+		{
+			popped = pop();
+			c = popped->right;
+			if(c!=NULL)
+				push(c);
+			if(popped->v==val)
+			{
+				//	printf("%d. node address is: %p, node  value is :%d\n", __LINE__,  popped, popped->v);	
+				return popped;
+			}	
+		}
+		if(c != NULL)
+			c=c->left;
+		if(c == NULL && is_stack_empty() == TRUE)
+			break;
 	}
+	return NULL;
 }
-
-struct node* get_min_left_node_by_root(struct node* head)
+struct node* get_min_left_node_by_root(struct node* temp)
 {
-	struct node* t = root;
-	head=root;
-	for(t->
+	struct node* t=temp;
+	printf("%d. %s: v: %d, Add:%p\n", __LINE__, __FUNCTION__, temp->v, temp);	
+	for(t=temp; t->left != NULL; t = t->left)
+	{
+		printf("%d. %s: v: %d, Add:%p\n", __LINE__, __FUNCTION__, t->v, t);	
+	}
+	printf("min v:%d, addr:%p\n", t->v, t);	
+	return t;
+}
+struct node* get_max_right_node_by_root(struct node* temp)
+{
+	struct node* t=temp;
+	printf("%d. %s: v: %d, Add:%p\n", __LINE__, __FUNCTION__, temp->v, temp);	
+	for(t=temp; t->right != NULL; t = t->right)
+	{
+		printf("%d. %s: v: %d, Add:%p\n", __LINE__, __FUNCTION__, t->v, t);	
+	}
+	printf("max v:%d, addr:%p\n", t->v, t);	
+	return t;
+}
+int single_child_parent(struct node* temp)
+{
+	if(temp->left!=NULL && temp->right!=NULL)
+		return 0;
+	if(temp->left==NULL && temp->right!=NULL)
+		return 0;
+	return 1;
+}
+int is_leaf_node(struct node* temp)
+{
+	if(temp->right==NULL && temp->left==NULL)
+		return 1;
+	return 0;
 }
 void inorder_traversal(void)
 {
@@ -125,7 +168,7 @@ void inorder_traversal(void)
 			c = popped->right;
 			if(c!=NULL)
 				push(c);
-			printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
+			printf("%d. v: %5d, Add:%p\n", __LINE__,  popped->v, popped);	
 		}
 		if(c != NULL)
 			c=c->left;
@@ -133,43 +176,28 @@ void inorder_traversal(void)
 			break;
 	}
 }
-int values[] = {8, 12, 10, 7, 32};
+
+int values[] = {20,10,31,5,15,25,42,2,12,19,11,14,35,47,33,37};
 int main()
 {
 	struct node *c=root;
-	int i = 0;
-	for (i = 0; i < sizeof(values)/sizeof(int); i++)
-}	
-void inorder_traversal(void)
-{
-	struct node *c=NULL, *popped;
-	c = root;
-	while(TRUE)
-	{
-		if(c != NULL)
-			push(c);
-		if(c==NULL && is_stack_empty()==FALSE)
-		{
-			popped = pop();
-			c = popped->right;
-			if(c!=NULL)
-				push(c);
-			printf("%d. popped %p, value :%d\n", __LINE__,  popped, popped->v);	
-		}
-		if(c != NULL)
-			c=c->left;
-		if(c == NULL && is_stack_empty() == TRUE)
-			break;
-	}
-}
-int values[] = {8, 12, 10, 7, 32};
-int main()
-{
-	struct node *c=root;
+	struct node* temp=NULL;
+	struct node* temp2=NULL;
+	int flag;
+	int flag2;
 	int i = 0;
 	for (i = 0; i < sizeof(values)/sizeof(int); i++)
 		add_node(values[i]);
 	inorder_traversal();
+	temp = get_node_by_val(33);
+	printf("%d. get_node_by_val: v: %d, Add:%p\n", __LINE__,  temp->v, temp);	
+	temp2 = get_max_right_node_by_root(temp);
+	printf(" \n int main == temp =%d\n",temp->v);
+	flag=single_child_parent(temp);
+	printf("\nflag = %d \n",flag);
+	
+	flag2=is_leaf_node(temp);
+	printf("\n%d\n",flag2);
 	return 0;
 }
 
