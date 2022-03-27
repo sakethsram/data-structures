@@ -21,3 +21,4 @@ int add_node(int val);
 void inorder_traversal(void);
 struct node* get_node_by_val(int val);
 struct node* get_max_right_node_by_root(struct node* temp);
+void preorder_traversal(void);
