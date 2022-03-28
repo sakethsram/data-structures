@@ -1,7 +1,7 @@
 #include "defs.h"
 #include "stdio.h"
 #include "stdlib.h"
-struct node* get_node_by_val(int val)
+struct node* delete_node_by_val(int val)
 {
 	printf("\n");
 	printf("\n");
@@ -13,14 +13,16 @@ struct node* get_node_by_val(int val)
 			push(c);
 		if(c==NULL && is_stack_empty()==FALSE)
 		{
+			parent = popped;
 			popped = pop();
 			c = popped->right;
-			if(c!=NULL)
+			if(c != NULL)
 				push(c);
 			if(popped->v==val)
 			{
-				printf("%d.%s PV :%d, PAddr :%p\n", __LINE__,  __FILE__, popped->v, popped);
-				parent = popped;
+				printf("%d.%s searched  Value  :%d,  Addr :%p\n", __LINE__,  __FILE__, popped->v, popped);
+				printf("%d.%s PV :%d, PAddr :%p\n", __LINE__,  __FILE__, parent->v, parent);
+				return parent;
 				return popped;
 			}	
 		}

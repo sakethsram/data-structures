@@ -25,3 +25,4 @@ struct node* get_max_right_node_by_root(struct node* temp);
 struct node* get_min_right_node_by_root(struct node* temp);
 struct node* get_max_left_node_by_root(struct node* temp);
 struct node* get_min_left_node_by_root(struct node* temp);
+struct node* delete_node_by_val(int val);

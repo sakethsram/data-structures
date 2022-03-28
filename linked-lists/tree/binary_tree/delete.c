@@ -1,11 +1,11 @@
 #include "defs.h"
 #include "stdio.h"
 #include "stdlib.h"
-struct node* get_node_by_val(int val)
+struct node* delete_node_by_val(int val)
 {
 	printf("\n");
 	printf("\n");
-	struct node *c=NULL, *popped;
+	struct node *c=NULL, *popped, *parent = NULL;
 	c = root;
 	while(TRUE)
 	{
@@ -15,11 +15,13 @@ struct node* get_node_by_val(int val)
 		{
 			popped = pop();
 			c = popped->right;
-			if(c!=NULL)
+			if(c != NULL)
 				push(c);
 			if(popped->v==val)
 			{
-				printf("%d. node address is: %p, node  value is :%d\n\n", __LINE__,  popped, popped->v);	
+				printf("%d.%s searched  Value  :%d,  Addr :%p\n", __LINE__,  __FILE__, popped->v, popped);
+				parent = popped;
+				printf("%d.%s PV :%d, PAddr :%p\n", __LINE__,  __FILE__, parent->v, parent);
 				return popped;
 			}	
 		}
