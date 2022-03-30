@@ -1,8 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "defs.h"
-//int values[] = {20,10,31,5,15,25,42,2,12,19,11,14,35,47,33,37};
-int values[] = {20, 5, 25, 3, 7, 21, 26, 1, 9, 27};
+int values[] = {20,10,31,5,15,25,42,4,43};
 struct node *stack[MAX_STACK_SIZE];
 struct node *root=NULL;
 int needle = -1;
@@ -10,15 +9,11 @@ int main()
 {
 	struct node *c=root;
 	struct node* temp=NULL;
-	struct node* temp2=NULL;
-	int flag;
-	int flag2;
-	int i = 0;
+	int i=0;
 	for (i = 0; i < sizeof(values)/sizeof(int); i++)
 		add_node(values[i]);
 	inorder_traversal();
-	//temp = get_node_by_val(15);
-	temp = delete_node_by_val(21);
-	return 0;
+	temp =p_search(42);
+	inorder_traversal();
 }
 
