@@ -51,6 +51,7 @@ int bt_delete_single_parent_right(struct node*c, struct node*parent)
 	}	
 	return 0;
 }
+int bt_delete_double_parent(struct node *c,struct node*)
 int delete_node_by_value(int val)
 {
 	struct node *c=NULL;
