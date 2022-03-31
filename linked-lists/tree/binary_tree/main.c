@@ -1,8 +1,8 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "defs.h"
-int values[] = {20, 10, 31, 5, 15, 32};
-int svals[] = {20, 10, 31, 5, 15, 32};
+int values[] = {20,10, 31, 5, 15, 32,4,16};
+int svals[] = {20, 10, 31, 5, 15, 32,4,16};
 struct node *stack[MAX_STACK_SIZE];
 struct node *root=NULL;
 int needle = -1;
@@ -36,9 +36,9 @@ int main()
 
 	build_btree();
 	dump_btree();
-	validate_search();
-	return 0;
-	delete_node_by_value(5);
+	//validate_search();
+	delete_node_by_value(4);
 	dump_btree();
+	return 0;
 }
 
