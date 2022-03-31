@@ -7,20 +7,42 @@ int svals[] = {20, 5, 10, 15, 99};
 struct node *stack[MAX_STACK_SIZE];
 struct node *root=NULL;
 int needle = -1;
+
+
+int validate_search(void)
+{
+	int i=0;
+	for (i = 0; i < sizeof(svals)/sizeof(int); i++)
+	{
+
+		printf("Searching :%d...\n", svals[i]);
+		search_node_by_value(svals[i]);
+		printf("\n");
+	}
+}
+
+int build_btree(void)
+{
+	int i=0;
+	for (i = 0; i < sizeof(values)/sizeof(int); i++)
+		add_node(values[i]);
+}
+
+void dump_btree(void)
+{
+	inorder_traversal();
+}
+
 int main()
 {
 	struct node *c=root;
 	struct node* temp=NULL;
-	int i=0;
-	for (i = 0; i < sizeof(values)/sizeof(int); i++)
-		add_node(values[i]);
-	inorder_traversal();
-	for (i = 0; i < sizeof(svals)/sizeof(int); i++)
-	{
-		printf("Searching :%d...\n", svals[i]);
-		temp = p_delete(svals[i]);
-		printf("\n");
-	}
+
+	build_btree();
+	dump_btree();
+	//validate_search();
+	
+	delete_node_by_value(5);
 	inorder_traversal();
 }
 
