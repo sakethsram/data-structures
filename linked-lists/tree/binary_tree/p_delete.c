@@ -84,15 +84,10 @@ int delete_node_by_value(int val)
 		printf("            parent value :%d at %p\n", parent->v, parent);
 	if(c->right==NULL && c->left==NULL )
 			bt_delete_leaf_node(c,parent);
-	if(c->left != NULL)
-	{
-		printf("%d\n",__LINE__);
-		if(c->right==NULL)
-		{
-			printf("%d\n",__LINE__);
+	if(c->left != NULL && c->right==NULL)
 			bt_delete_single_parent_left(c,parent);
-		}	
-	}
+	if(c->left == NULL && c->right!=NULL)
+			bt_delete_single_parent_right(c,parent);
 }	
 	
 	/*struct node *c=root;

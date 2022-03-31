@@ -37,7 +37,7 @@ int main()
 	build_btree();
 	dump_btree();
 	//validate_search();
-	delete_node_by_value(4);
+	delete_node_by_value(16);
 	dump_btree();
 	return 0;
 }
