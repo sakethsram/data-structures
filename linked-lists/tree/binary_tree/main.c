@@ -1,20 +1,16 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "defs.h"
-//int values[] = {20,10,31,5,15,25,42,4,43};
 int values[] = {20, 10, 31, 5, 15, 32};
-int svals[] = {20, 5, 10, 15, 99};
+int svals[] = {20, 10, 31, 5, 15, 32};
 struct node *stack[MAX_STACK_SIZE];
 struct node *root=NULL;
 int needle = -1;
-
-
 int validate_search(void)
 {
 	int i=0;
 	for (i = 0; i < sizeof(svals)/sizeof(int); i++)
 	{
-
 		printf("Searching :%d...\n", svals[i]);
 		search_node_by_value(svals[i]);
 		printf("\n");
@@ -40,9 +36,9 @@ int main()
 
 	build_btree();
 	dump_btree();
-	//validate_search();
-	
+	validate_search();
+	return 0;
 	delete_node_by_value(5);
-	inorder_traversal();
+	dump_btree();
 }
 
