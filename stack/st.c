@@ -6,7 +6,6 @@ int top = 0;
 int b = 0;
 int stack[MAX];
 int q[MAX];
-
 int queue_pop(void)
 {
 	int t;
