@@ -11,3 +11,4 @@ char *index(char *s , int c);
 char   *strcpy(char *s,char *d);
 char   *strncpy(char *s,char *d ,int n);
 int astrncat ( char *p , char *a, int n );
+int alindex(char *s);
