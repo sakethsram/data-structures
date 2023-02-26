@@ -1,0 +1,57 @@
+install mongodb	
+	1)wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+	2)sudo apt-get install gnupg
+	3)wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+	4)echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+	5)sudo apt-get update
+	6)sudo apt-get install -y mongodb-org
+start mongodb
+	sudo systemctl start mongodb
+	sudo systemctl status mongodb
+	mongo --quiet  this shows the terminal for the mongodb
+	
+	
+mongo --host localhost --port 27017
+
+mongo "mongodb://mongodb0.example.com:28015"
+
+
+
+Commands
+show dbs
+use <database_name>
+show collections
+
+Show All Databases
+	show dbs
+	
+Show Current Database
+	db
+	
+Create Or Switch Database
+	use acme
+	
+Drop
+	db.dropDatabase()
+	
+Create Collection
+	db.createCollection('dsr')
+	
+Show Collections
+	show collections
+	
+show documents in a collection
+	db.dsr.find( {} )
+	
+	
+	
+NAME OF THE DATABASE =  POLYHOUSE
+NAME OF THE Collection = DSR
+db.dsr.insertOne({ "ID" = 1)}
+ , OWNER_NAME=saketh , ASSIGNMENT = watering ,DATE = 20-02-2023 , TASK DESCRIPTION= add water to the polyhouse 1 })
+      
+	  
+use("dsr");
+db.dsr.insertOne({"_id" : 3, "owner_name " : "saketh", "work" : harvestig , "task des" :hrvst , "date" : new Date("2014-03-01T08:00:00Z")});	  
+db.dsr.insertOne({"_id" : 4, "owner_name " : "saketh",  "date" : new Date("2023-04-01T08:00:00Z")});	  
+	  
