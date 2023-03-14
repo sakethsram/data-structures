@@ -1,0 +1,261 @@
+Commands
+show dbs
+use <database_name>
+show collections
+
+Show All Databases
+	show dbs
+	
+Show Current Database
+	db
+	
+Create Or Switch Database
+	use acme
+	
+Drop
+	db.dropDatabase()
+	
+Create Collection
+	db.createCollection('dsr')
+	
+Show Collections
+	show collections
+	
+show documents in a collection
+	db.polyhouse.find( {} )
+	
+	
+	
+NAME OF THE DATABASE =  POLYHOUSE
+NAME OF THE Collection = DSR
+db.dsr.insertOne({ "ID" = 1)}
+ , OWNER_NAME=saketh , ASSIGNMENT = watering ,DATE = 20-02-2023 , TASK DESCRIPTION= add water to the polyhouse 1 })
+      
+	  
+use("dsr");
+db.dsr.insertOne({"_id" : 3, "owner_name " : "saketh", "work" : harvestig , "task des" :hrvst , "date" : new Date("2014-03-01T08:00:00Z")});	  
+db.dsr.insertOne({"_id" : 4, "owner_name " : "saketh",  "date" : new Date("2023-04-01T08:00:00Z")});	 
+db.dsr.insertOne({"_id" : getNextSequenceValue(), "owner_name " : "saketh",  "date" : new Date()});	  
+db.dsr.insertOne({"_id" : getNextUserId(), "owner_name " : "saketh",  "date" : new Date("2023-04-01T08:00:00Z")});
+
+db.products.insert({
+   "_id":getNextSequenceValue("productid"),
+   "product_name":"Apple iPhone",
+   "category":"mobiles"
+})
+
+db.users.createIndex({ "user_id": 1 }, { unique: true })
+
+db.counters.insertOne({ "_id": "user_id", "sequence_value": 0 })
+
+function getNextUserId() {
+   const sequenceDocument = db.counters.findOneAndUpdate(
+      { "_id": "user_id" },
+      { $inc: { "sequence_value": 1 } },
+      { new: true }
+   );
+   return sequenceDocument.sequence_value;
+}
+
+db.users.insertOne({
+   "_id": getNextUserId(),
+   "name": "John Doe",
+   "email": "john.doe@example.com"
+});
+
+db.users.insertOne({
+   "_id": getNextUserId(),
+   "name": "Jane Doe",
+   "email": "jane.doe@example.com"
+});
+
+db.users.insertOne({
+   "_id": getNextUserId(),
+   "name": "Bob Smith",
+   "email": "bob.smith@example.com"
+});
+=======================================================
+
+Autoincrement in MongoDB
+
+https://www.youtube.com/watch?v=S_oM2aYDT-A
+
+MongoDB also supports auto-increment like SQL database.
+
+Basically, mongodb provides ObjectId for 12-byte. But we can also make it custom.
+
+We can achieve auto increment using a new collection for increment purpose and javascript function. 
+FYI, MongoDB supports javascript function. :)
+
+Means we need to create the collection like counter and javascript function.
+So we can create the function and call that function for getting next value.
+
+
+Mapping between DB and Collections
+.
+└── polyhouse (DB)
+    ├── counters (Collection used to store ID, which is used to increment)
+    └── dsr  (Collection, max_ID + 1, is a new student record ID)
+
+E.G
+Start the mongo instance and shell.
+
+
+Start using polyhouse db
+	use polyhouse
+	
+Create student collection.
+	db.createCollection("dsr")
+
+Confirm creationg of student collection
+	show collections
+	
+Now create collection called counter.
+	db.createCollection("counters")
+
+Now add record into the counters collection.
+	db.counters.insert({_id:"taskid",sequence_value:0})
+
+Confirm record is inserted
+	 db.counters.find({})
+
+Create javascript function. Now execute 
+	db.system.js.save(
+	   {
+		 _id : "getNextValue" ,
+		 value : function (sequence){ 
+			 var document = db.counters.findAndModify({
+			 query:{_id: sequence },
+			 update: {$inc:{sequence_value:1}},
+			 new:true});
+	 
+			 return document.sequence_value; 
+			}
+	   }
+	);
+
+check where the function stored then 
+	db.system.js.find({});
+
+Now add some data into student collection.
+	db.loadServerScripts();
+
+Now add data
+	db.polyhouse.insert({
+	   "_id":getNextValue("taskid"),
+	   "name":"saketh"
+	});
+	
+Now we just check what value shoud be in to _id
+	db.polyhouse.insert({
+	   "_id":getNextValue("taskid"),
+	   "name":"Patel Jayesh"
+	});
+
+	db.polyhouse.insert({
+	   "_id":getNextValue("taskid"),
+	   "name":"Kanjani Paresh"
+	});
+	db.polyhouse.insert({
+	   "_id":getNextValue("taskid"),
+	   "owner_name":"Patel Jayesh",
+	   "date" : ":w",
+	   "time_out"  : 1500,
+	   "statement" : " this is a statements of the task " , 
+	   "notes" : " this is the  notes i" 
+	});
+
+
+========================
+
+
+Commands
+show dbs
+use <database_name>
+show collections
+
+Show All Databases
+	show dbs
+	
+Show Current Database
+	db
+	
+Create Or Switch Database
+	use acme
+	
+Drop
+	db.dropDatabase()
+	
+Create Collection
+	db.createCollection('dsr')
+	
+Show Collections
+	show collections
+	
+show documents in a collection
+	db.polyhouse.find( {} )
+	
+	
+	
+NAME OF THE DATABASE =  POLYHOUSE
+NAME OF THE Collection = DSR
+db.dsr.insertOne({ "ID" = 1)}
+ , OWNER_NAME=saketh , ASSIGNMENT = watering ,DATE = 20-02-2023 , TASK DESCRIPTION= add water to the polyhouse 1 })
+      
+	  
+use("dsr");
+db.dsr.insertOne({"_id" : 3, "owner_name " : "saketh", "work" : harvestig , "task des" :hrvst , "date" : new Date("2014-03-01T08:00:00Z")});	  
+db.dsr.insertOne({"_id" : 4, "owner_name " : "saketh",  "date" : new Date("2023-04-01T08:00:00Z")});	 
+db.dsr.insertOne({"_id" : getNextSequenceValue(), "owner_name " : "saketh",  "date" : new Date()});	  
+db.dsr.insertOne({"_id" : getNextUserId(), "owner_name " : "saketh",  "date" : new Date("2023-04-01T08:00:00Z")});
+
+db.products.insert({
+   "_id":getNextSequenceValue("productid"),
+   "product_name":"Apple iPhone",
+   "category":"mobiles"
+})
+
+db.users.createIndex({ "user_id": 1 }, { unique: true })
+
+db.counters.insertOne({ "_id": "user_id", "sequence_value": 0 })
+
+function getNextUserId() {
+   const sequenceDocument = db.counters.findOneAndUpdate(
+      { "_id": "user_id" },
+      { $inc: { "sequence_value": 1 } },
+      { new: true }
+   );
+   return sequenceDocument.sequence_value;
+}
+
+db.users.insertOne({
+   "_id": getNextUserId(),
+   "name": "John Doe",
+   "email": "john.doe@example.com"
+});
+
+db.users.insertOne({
+   "_id": getNextUserId(),
+   "name": "Jane Doe",
+   "email": "jane.doe@example.com"
+});
+
+db.users.insertOne({
+   "_id": getNextUserId(),
+   "name": "Bob Smith",
+   "email": "bob.smith@example.com"
+});
+================================================================================
+db.polyhouse.insert({
+	   "_id":getNextValue("taskid"),
+	   "owner_name":"Patel Jayesh",
+	   "date" : ":w",
+	   "time_out"  : 1500,
+	   "statement" : " this is a statements of the task " , 
+	   "notes" : " this is the  notes i" 
+	});
+	
+	
+	
+	d = {"_id" : 10, "owner_name " : "saketh",  "date" : ":w", "time_out"  : 1500,
+        "

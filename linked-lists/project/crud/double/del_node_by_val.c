@@ -9,6 +9,7 @@ int del_node_by_val(int v)
 	if(h->rno==v)
 	{
 		h=t->next;
+		t->prev = NULL;
 		free(t);
 		return 0;
 	}

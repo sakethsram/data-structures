@@ -2,6 +2,7 @@
 #include "defs.h"
 int main()
 {
-	char s[100]="bketh";
-	alindex(s);
+	char s[100]="Zketh";
+	int i =alindex(s);
+	printf("\n i = %d\n",i);
 }	

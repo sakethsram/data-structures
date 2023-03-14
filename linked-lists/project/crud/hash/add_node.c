@@ -2,20 +2,21 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-extern struct student *h;
+extern struct student *h[28];
 int add_node(int rno, char *name, int marks)
 {
+	int hkey=alindex(name);
 	struct student *p=NULL,*t=NULL;
-	t=h;
+	t=h[hkey];
 	p=malloc(sizeof(struct student));
 	p->rno=rno;
 	strcpy(p->name, name);
 	p->marks=marks;
 	p->next=NULL;
 	p->prev=NULL;
-	if(h==NULL)
+	if(h[hkey]==NULL)
 	{
-		h=p;
+		h[hkey]=p;
 		return 0;
 	}
 	while(t->next != NULL)
