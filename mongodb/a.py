@@ -4,7 +4,6 @@ import datetime
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["polyhouse"]
 mycol = mydb["dsr"]
-mycounter=mydb["counters"]
 
 
 
