@@ -11,8 +11,16 @@
 #define PORT 12345
 #define BUFFER_SIZE 1024
 
-int main() 
-{
+char data[][128] = {
+    "hello\n",
+    "how are you\n",
+    "where are you\n",
+    "bye\n"
+};
+
+int main() {
+    int temp = 0, dlen = 0;
+    dlen = sizeof(data) / 128;
     int client_socket;
     struct sockaddr_in server_address;
     char buffer[BUFFER_SIZE];
@@ -26,19 +34,17 @@ int main()
 
     connect(client_socket, (struct sockaddr *)&server_address, sizeof(server_address));
 
-    printf("Enter message to send: ");
-    fgets(buffer, BUFFER_SIZE, stdin);
-    send(client_socket, buffer, strlen(buffer), 0);
+    // Send strings with newline characters
+    for (temp = 0; temp < dlen; temp++) {
+        send(client_socket, data[temp], strlen(data[temp]), 0);
+    }
 
-    ssize_t bytes_received = recv(client_socket, buffer, BUFFER_SIZE, 0);
-    buffer[bytes_received] = '\0';
-
-    for (int i = 0; i < bytes_received; i++) 
-        buffer[i] = toupper(buffer[i]);
-
-    send(client_socket, buffer, bytes_received, 0);
-
-    printf("Capitalization message sent back to server(from client): %s\n", buffer);
+    ssize_t bytes_received;
+    while ((bytes_received = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+        buffer[bytes_received] = '\0';
+        printf("Server: %s\n", buffer);
+        send(client_socket, buffer, bytes_received, 0);
+    }
 
     close(client_socket);
 
