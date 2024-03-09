@@ -27,31 +27,37 @@ int main()
     server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
     server_address.sin_port = htons(PORT);
 
-    if (connect(client_socket, (struct sockaddr *)&server_address, sizeof(server_address)) == -1) {
+    if (connect(client_socket, (struct sockaddr *)&server_address, sizeof(server_address)) == -1) 
+    {
         perror("Connection failed");
         exit(EXIT_FAILURE);
     }
 
-    // Send data to the server
+    // Send data to the server and receive responses
     char data[][128] = {"hello\n", "how are you\n", "where are you\n", "bye\n"};
     int dlen = sizeof(data) / sizeof(data[0]);
-    for (int i = 0; i < dlen; i++) {
-        if (send(client_socket, data[i], strlen(data[i]), 0) == -1) {
+
+    for (int i = 0; i < dlen; i++) 
+    {
+        // Send data to the server
+        if (send(client_socket, data[i], strlen(data[i]), 0) == -1)
+        {
             perror("Send failed");
             exit(EXIT_FAILURE);
         }
-    }
+        sleep(15);
+        // Receive data from the server
+        ssize_t bytes_received;
+        while ((bytes_received = recv(client_socket, buffer, BUFFER_SIZE - 1, 0)) > 0) 
+        {
+            buffer[bytes_received] = '\0';
+            printf("Server: %s\n", buffer);
+        }
 
-    // Receive data from the server
-    ssize_t bytes_received;
-    while ((bytes_received = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
-        buffer[bytes_received] = '\0';
-        printf("Server: %s\n", buffer);
-    }
-
-    if (bytes_received == -1) {
-        perror("Receive failed");
-        exit(EXIT_FAILURE);
+        if (bytes_received == -1) {
+            perror("Receive failed");
+            exit(EXIT_FAILURE);
+        }
     }
 
     close(client_socket);
